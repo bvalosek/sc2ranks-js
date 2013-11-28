@@ -1,0 +1,22 @@
+{
+  "name": "sc2ranks-js",
+  "version": "0.0.0",
+  "description": "Javascript library for accessing the SC2 Ranks API.",
+  "keywords": [
+    "starcraft",
+    "sc2",
+    "library"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:bvalosek/sc2ranks-js.git"
+  },
+  "author": "Brandon Valosek",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "httpinvoke": "~1.0.4",
+    "q": "~0.9.7",
+    "moment": "~2.4.0"
+  }
+}
