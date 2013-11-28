@@ -29,6 +29,8 @@ Create a `Player` model by passing in a Battle.NET ID and a region to the API
 factory function:
 
 ```javascript
+var Player = require('sc2ranks/lib/Player');
+
 var player = api.factory(Player, 2840641, sc2.REGIONS.US);
 ```
 
