@@ -10,7 +10,7 @@ I suck at Starcraft but I'm awesome at Javascript.
 ## Usage
 
 All examples require you to setup a data context to the API with your key. You
-can get your SC2 Ranks key from [here](http://www.sc2ranks.com/usercp/api].
+can get your SC2 Ranks key from [here](http://www.sc2ranks.com/usercp/api).
 
 ```javascript
 var sc2 = require('sc2ranks');
