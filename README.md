@@ -7,6 +7,12 @@ Ranks](http://www.sc2ranks.com/).
 
 I suck at Starcraft but I'm awesome at Javascript.
 
+## Installing
+
+```
+npm install sc2ranks
+```
+
 ## Usage
 
 All examples require you to setup a data context to the API with your key. You

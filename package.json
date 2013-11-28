@@ -1,5 +1,5 @@
 {
-  "name": "sc2ranks-js",
+  "name": "sc2ranks",
   "version": "0.1.0",
   "description": "Javascript library for accessing the SC2 Ranks API.",
   "keywords": [
