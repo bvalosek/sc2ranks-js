@@ -63,7 +63,55 @@ details on these methods.
 * getCharacterData (`battleNetId`, `region`)
 * getClanData (`clanTag`, `rankRegion`, `options`)
 
-## Examples
+## More Examples
+
+### Fetching Character and Clan details
+
+Also shows how to use `fail()` in the promise chain to catch any errors and how
+to inspect your `api` instance to see how many credits you have left.
+
+```javascript
+var character = api.factory(Character, 995794, sc2.REGIONS.US);
+
+character.fetch()
+.then(function() {
+  return character.clan.fetch();
+})
+.then(function() {
+  console.log(character);
+  console.log('remaining credits', api.creditsLeft);
+})
+.fail(function(err) {
+  console.log('error', err);
+});
+```
+
+### Get a player's 1v1 team(s)
+
+```javascript
+new api.Query()
+  .from(sc2.Teams)
+  .where(sc2.BattleNetId, 4098270)
+  .where(sc2.Region, 'kr')
+  .where(sc2.Bracket, '1v1')
+  .select()
+  .then(function(teams) {
+    teams.forEach(function(team) {
+      console.log(team);
+    });
+  });
+```
+
+### Get detailed player information.
+
+Use the `fetchAll()` method on a `Character` to get full team and clan info.
+
+```javascript
+var character = api.factory(Character, 995794, 'us');
+
+character.fetchAll().then(function() { ... });
+```
+
 
 ## License
 Copyright 2013 Brandon Valosek
