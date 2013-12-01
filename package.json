@@ -17,6 +17,7 @@
   "dependencies": {
     "httpinvoke": "~1.0.4",
     "q": "~0.9.7",
-    "moment": "~2.4.0"
+    "moment": "~2.4.0",
+    "underscore": "~1.5.2"
   }
 }

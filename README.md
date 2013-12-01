@@ -3,6 +3,9 @@
 A NodeJS Javascript library for accessing the API from [SC2
 Ranks](http://www.sc2ranks.com/).
 
+Get access to player, clan, team, and division stats with server-side
+Javascript.
+
 ## Why?
 
 I suck at Starcraft but I'm awesome at Javascript.
@@ -15,73 +18,49 @@ npm install sc2ranks
 
 ## Usage
 
-All examples require you to setup a data context to the API with your key. You
+All examples require you to setup a connection to the API with your key. You
 can get your SC2 Ranks key from [here](http://www.sc2ranks.com/usercp/api).
 
 ```javascript
 var sc2 = require('sc2ranks');
-var api = new sc2.Context('your-api-key');
+var api = new sc2.Connection('your-api-key');
 ```
 
-### Get a Player
+### Fetching data from the API
 
-Create a `Player` model by passing in a Battle.NET ID and a region to the API
-factory function:
+You can directly create `Character`, `Clan`, `Team`, or `Division` objects and
+then `fetch()` them, which will return a promise.
 
 ```javascript
-var Player = require('sc2ranks/lib/Player');
+var character = api.factory(Character, 287490, sc2.REGIONS.US);
 
-var player = api.factory(Player, 2840641, sc2.REGIONS.US);
+character.fetch().then(function() { ... });
 ```
 
-To fetch the player's info, call the `fetch()` method, which returns a
-[Q](https://github.com/kriskowal/q) promise;
+### Using the Query Builder
 
 ```javascript
-var promise = player.fetch();
-
-promise.done(function() { console.log(player); });
-```
-
-As a query:
-
-```javascript
-new sc2.Query(api)
-  .from(sc2.Players)
+new api.Query()
+  .from(sc2.Characters)
+  .where(sc2.BattleNetId, 287490)
   .where(sc2.Region, sc2.REGIONS.US)
-  .where(sc2.BattleNetId, 2840641)
   .first()
-  .then(function(player) {
-    console.log(player);
-  })
-  .fail(function(err) {
-    console.log('error', err);
-  });
+  .then(function(character) { ... });
 ```
 
-### Get a Player's Teams
+### Calling the API Directly
+
+You can access the API functions directly off the connection object, returning
+a promise for the raw data response from SC2 Ranks.
 
 ```javascript
-var player = api.factory(Player, 2840641, sc2.REGIONS.US);
-
-player.getTeams()
-  .done(function() {
-    console.log(player.teams);
-  });
+api.getCharacterData(287490, sc2.REGIONS.US).then(function(data) { ... });
 ```
 
-As a query:
+See the [official SC2 Ranks documentation](http://www.sc2ranks.com/api) for
+details on these methods.
 
-```javascript
-new sc2.Query(api)
-  .from(sc2.Teams)
-  .where(sc2.Region, sc2.REGIONS.US)
-  .where(sc2.BattleNetId, 2840641)
-  .where(sc2.Race, sc2.RACES.TERRAN)
-  .where(sc2.League, sc2.GRANDMASTER)
-  .select()
-  .done(function(teams) {
-    console.log(teams);
-  });
-```
+* getCharacterData (`battleNetId`, `region`)
+* getClanData (`clanTag`, `rankRegion`, `options`)
 
+## Examples
