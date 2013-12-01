@@ -64,3 +64,9 @@ details on these methods.
 * getClanData (`clanTag`, `rankRegion`, `options`)
 
 ## Examples
+
+## License
+Copyright 2013 Brandon Valosek
+
+**sc2ranks-js** is released under the MIT license.
+
