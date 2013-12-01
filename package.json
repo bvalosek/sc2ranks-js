@@ -1,6 +1,6 @@
 {
   "name": "sc2ranks",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Javascript library for accessing the SC2 Ranks API.",
   "keywords": [
     "starcraft",
